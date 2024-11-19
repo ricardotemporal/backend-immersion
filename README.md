@@ -1,11 +1,16 @@
 # Day 1 of Alura's Immersion! 🚀
 
-This is a basic server project created with **Node.js** and **Express** during Alura's Back-End Immersion. The project will evolve throughout the immersion to include more features and functionality.
+This project is part of Alura's Back-End Immersion, focusing on building a robust API using **Node.js**, **Express**, and **MongoDB**. Over the immersion, the project evolves to include more advanced functionalities and database integrations.
 
 ## 📋 Features
 
-- Starts a server listening on port 3000.
-- GET `/api/`: Returns a welcome message.
+- Starts a server that listens on port 3000.
+- GET `/posts`: Returns a list of mock posts.
+- GET `/posts/:id`: Retrieves a specific post by its ID.
+- **Day 2 Updates**:
+  - Created a mock database for posts.
+  - Prepared MongoDB Atlas for integration by generating a connection link.
+  - Added routes to interact with the mock data.
 
 ## 🚀 How to Run the Project
 
@@ -26,12 +31,16 @@ This is a basic server project created with **Node.js** and **Express** during A
 
     `node server.js` 
     
-7.  Access the endpoint in your browser or API client:
+6.  Access the endpoint in your browser or API client:
 
-    `http://localhost:3000/api/` 
+- List all posts:
+    `GET http://localhost:3000/posts/` 
+- Retrieve a specific post by ID:
+    `GET http://localhost:3000/posts/:id` 
     
 
 ## 🛠️ Technologies Used
 
 -   [Node.js](https://nodejs.org/)
 -   [Express.js](https://expressjs.com/)
+-   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) (prepared for future integration)
