@@ -55,4 +55,4 @@ This project is part of Alura's Back-End Immersion, focusing on building a robus
 
 -   [Node.js](https://nodejs.org/)
 -   [Express.js](https://expressjs.com/)
--   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) (prepared for future integration)
+-   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) 
