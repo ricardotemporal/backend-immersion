@@ -13,3 +13,15 @@ export async function getAllPosts() {
     const collection = db.collection("posts");
     return collection.find().toArray();
 }
+
+/**
+ * Creates a new post in the "posts" collection.
+ * 
+ * @param {Object} newPost - The data for the new post.
+ * @returns {Promise<Object>} The result of the insert operation, including the inserted ID.
+ */
+export async function createPost(newPost) {
+    const db = connection.db("imersao-backend");
+    const collection = db.collection("posts");
+    return collection.insertOne(newPost);
+}

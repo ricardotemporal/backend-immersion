@@ -1,11 +1,13 @@
-# Day 3 of Alura's Immersion! 🚀
+# Day 4 of Alura's Immersion! 🚀
 
 This project is part of Alura's Back-End Immersion, focusing on building a robust API using **Node.js**, **Express**, and **MongoDB**. Over the immersion, the project evolves to include more advanced functionalities and database integrations.
 
 ## 📋 Features
 
 - Starts a server that listens on port 3000.
-- GET `/posts`: Retrieves all posts from the database.
+- **GET /posts**: Retrieves all posts from the database.
+- **POST /posts**: Adds a new post to the database.
+- **POST /upload**: Uploads an image and creates a new post with the uploaded file.
 - **Day 2 Updates**:
   - Created a mock database for posts.
   - Prepared MongoDB Atlas for integration by generating a connection link.
@@ -20,6 +22,12 @@ This project is part of Alura's Back-End Immersion, focusing on building a robus
     - **Controllers** to handle logic and requests.
     - **Routes** to manage API endpoints.
     - **Config** for centralized configuration.
+- **Day 4 Updates**:
+  - Implemented image upload functionality using **Multer**.
+  - Created the `POST /posts` route to add new posts to the database.
+  - Created the `POST /upload` route to handle file uploads and post creation.
+  - Learned and tested HTTP verbs using Postman.
+  - Sent data to the MongoDB database via the API.
 
 ## 🚀 How to Run the Project
 
@@ -42,17 +50,30 @@ This project is part of Alura's Back-End Immersion, focusing on building a robus
 
     `CONNECTION_STRING=your-mongodb-connection-string`
     
-6.  Start the server:
+6.  Ensure the uploads/ directory exists:
+    - If not, create it manually or let the server handle it automatically.
 
-    `node server.js` 
+7.  Start the server:
+
+    `npm run dev` 
     
-7.  Access the endpoint in your browser or API client:
+8.  Access the endpoint in your browser or API client:
 
 - List all posts:
     `GET http://localhost:3000/posts` 
+
+- Add a new post:
+    `POST http://localhost:3000/posts`
+    `Body: JSON with post details.`
+
+- Upload an image:
+    `POST http://localhost:3000/upload`
+    `Body: Form-data with key "image" and file as the value.`
 
 ## 🛠️ Technologies Used
 
 -   [Node.js](https://nodejs.org/)
 -   [Express.js](https://expressjs.com/)
 -   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) 
+-   [Multer](https://www.npmjs.com/package/multer)
+-   [Postman](https://www.postman.com)
