@@ -1,5 +1,6 @@
 import fs from "fs";
-import { getAllPosts, createPost } from "../models/postsModel.js";
+import generateDescriptionWithGemini from "../services/geminiService.js";
+import { getAllPosts, createPost, updatePost, deletePost } from "../models/postsModel.js";
 
 /**
  * Controller function to list all posts.
@@ -61,5 +62,52 @@ export async function uploadImage(req, res) {
     } catch (error) {
         console.error("Error uploading image:", error.message);
         res.status(500).json({ error: "Failed to upload image" });
+    }
+}
+
+/**
+ * Controller function to update a post with new data.
+ * 
+ * @param {Object} req - The HTTP request object containing the updated post data.
+ * @param {Object} res - The HTTP response object.
+ * @returns {void} Sends a JSON response with the updated post data.
+ */
+export async function updateNewPost(req, res) {
+    const id = req.params.id;
+    const imageUrl = `http://localhost:3000/${id}.png`;
+
+    try {
+        const imgBuffer = fs.readFileSync(`uploads/${id}.png`);
+        const description = await generateDescriptionWithGemini(imgBuffer);
+
+        const post = {
+            imgUrl: imageUrl,
+            descricao: description,
+            alt: req.body.alt
+        };
+
+        const postUpdated = await updatePost(id, post);
+        res.status(200).json(postUpdated);
+    } catch (error) {
+        console.error("Error updating post:", error.message);
+        res.status(500).json({ error: "Failed to update post" });
+    }
+}
+
+/**
+ * Controller function to delete a post.
+ * 
+ * @param {Object} req - The HTTP request object containing the ID of the post to delete.
+ * @param {Object} res - The HTTP response object.
+ * @returns {void} Sends a JSON response with the result of the deletion.
+ */
+export async function deleteNewPost(req, res) {
+    const id = req.params.id;
+    try {
+        const result = await deletePost(id);
+        res.status(200).json(result);
+    } catch (error) {
+        console.error("Error deleting post:", error.message);
+        res.status(500).json({ error: "Failed to delete post" });
     }
 }

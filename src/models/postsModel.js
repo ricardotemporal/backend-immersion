@@ -1,3 +1,5 @@
+import 'dotenv/config';
+import { ObjectId } from "mongodb";
 import connectToDatabase from "../config/dbConfig.js";
 
 // Establishes a connection to the database
@@ -24,4 +26,31 @@ export async function createPost(newPost) {
     const db = connection.db("imersao-backend");
     const collection = db.collection("posts");
     return collection.insertOne(newPost);
+}
+
+/**
+ * Updates an existing post in the "posts" collection.
+ * 
+ * @param {string} id - The ID of the post to update.
+ * @param {Object} updatedPost - The new data to update the post.
+ * @returns {Promise<Object>} The result of the update operation.
+ */
+export async function updatePost(id, updatedPost) {
+    const db = connection.db("imersao-backend");
+    const collection = db.collection("posts");
+    const objID = new ObjectId(id);
+    return collection.updateOne({ _id: objID }, { $set: updatedPost });
+}
+
+/**
+ * Deletes a post from the "posts" collection.
+ * 
+ * @param {string} id - The ID of the post to delete.
+ * @returns {Promise<Object>} The result of the delete operation.
+ */
+export async function deletePost(id) {
+    const db = connection.db("imersao-backend");
+    const collection = db.collection("posts");
+    const objID = new ObjectId(id);
+    return collection.deleteOne({ _id: objID });
 }

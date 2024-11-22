@@ -3,6 +3,9 @@ import routes from "./src/routes/postsRoute.js";
 
 const app = express();
 
+// Serve static files from the "uploads" directory
+app.use(express.static("uploads"));
+
 /**
  * Initializes the application by configuring routes and starting the server.
  */
@@ -13,5 +16,5 @@ routes(app);
  * Displays a message in the console to confirm the server is running.
  */
 app.listen(3000, () => {
-    console.log("Server is listening...");
+    console.log("Server is listening on port 3000...");
 });
