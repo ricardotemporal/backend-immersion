@@ -1,98 +1,141 @@
-# Day 5 of Alura's Immersion! 🚀
+# 📦 Alura's Back-End Immersion Project
 
-This project is part of Alura's Back-End Immersion, focusing on building a robust API using **Node.js**, **Express**, and **MongoDB**. Over the immersion, the project evolves to include more advanced functionalities and database integrations.
+Welcome to the **Back-End Immersion** project developed during Alura's Back-End Immersion. This project showcases a robust RESTful API built with **Node.js**, **Express**, and **MongoDB**. It includes file upload functionality, image processing, and advanced database interactions, culminating in a deployment to **Google Cloud**.
 
-## 📋 Features
+## 🌟 Project Overview
 
-- Starts a server that listens on port 3000.
-- **GET /posts**: Retrieves all posts from the database.
-- **POST /posts**: Adds a new post to the database.
-- **POST /upload**: Uploads an image and creates a new post with the uploaded file.
-- **PUT /upload/:id**: Updates an image and its description.
-- **DELETE /posts/:id**: Deletes a specific post by ID.
+This API is designed to manage posts, supporting CRUD (Create, Read, Update, Delete) operations. The core functionalities revolve around handling post data, including image uploads, data storage, and retrieval, with a MongoDB Atlas database.
 
-### **Updates by Day**
+The API is fully hosted on Google Cloud, ensuring high availability and easy access. You can interact with the deployed version through the following link:
 
-- **Day 2**:
-  - Created a mock database for posts.
-  - Prepared MongoDB Atlas for integration by generating a connection link.
-  - Added routes to interact with the mock data.
-- **Day 3**:
-  - Configured the first cluster, database, and collection on **MongoDB Atlas**.
-  - Introduced **environment variables** for managing sensitive data.
-  - Connected the database to the API using a connection string.
-  - Refactored the GET `/posts` route to fetch data from MongoDB.
-  - Created a clear project structure:
-    - **Models** for database interaction.
-    - **Controllers** to handle logic and requests.
-    - **Routes** to manage API endpoints.
-    - **Config** for centralized configuration.
-- **Day 4**:
-  - Implemented image upload functionality using **Multer**.
-  - Created the `POST /posts` route to add new posts to the database.
-  - Created the `POST /upload` route to handle file uploads and post creation.
-  - Learned and tested HTTP verbs using Postman.
-  - Sent data to the MongoDB database via the API.
-- **Day 5**:
-  - Implemented the `PUT /upload/:id` route to update an image and its description using **Google Generative AI (Gemini)**.
-  - Added the `DELETE /posts/:id` route to delete a post from the database.
-  - Finalized image storage logic on the server.
-  - Deployed the back-end to **Google Cloud Run** for scalability.
+[**Access the API**](https://backend-immersion-428822791899.southamerica-east1.run.app/posts)
 
-## 🚀 How to Run the Project
+## 🚀 Features
 
-1. Make sure you have [Node.js](https://nodejs.org/) installed on your system.
-2. Clone the repository:
-   
-   `git clone https://github.com/your-username/your-repository-name.git`
-
-3.  Navigate to the project directory:
-
-    `cd your-repository-name` 
-    
-4.  Install dependencies:
-    
-    `npm install` 
-
-5.  Configure environment variables:
-    - Create a .env file in the root of the project.
-    - Add the following:
-
-    `CONNECTION_STRING=your-mongodb-connection-string`
-    `GEMINI_API_KEY=your-gemini-api-key`
-    
-6.  Ensure the uploads/ directory exists:
-    - If not, create it manually or let the server handle it automatically.
-
-7.  Start the server:
-
-    `npm run dev` 
-    
-8.  Access the endpoint in your browser or API client:
-
--   List all posts:
-    `GET http://localhost:3000/posts` 
-
--   Add a new post:
-    `POST http://localhost:3000/posts`
-    `Body: JSON with post details.`
-
--   Upload an image:
-    `POST http://localhost:3000/upload`
-    `Body: Form-data with key "image" and file as the value.`
-
--   Update an image and its description:
-    `PUT http://localhost:3000/upload/:id`
-
--   Delete a post:
-    `DELETE http://localhost:3000/posts/:id`
+-   **File Uploads**: Upload images associated with posts using the `/upload` route.
+-   **CRUD Operations**: Manage posts using dedicated routes for creating, reading, updating, and deleting.
+-   **MongoDB Integration**: Data is persistently stored and managed using a **MongoDB Atlas** database.
+-   **Image Processing**: Use of advanced image handling with Google Generative AI (Gemini) to generate descriptions for uploaded images.
+-   **Google Cloud Deployment**: The API is deployed on Google Cloud for scalability and reliability.
 
 ## 🛠️ Technologies Used
 
--   [Node.js](https://nodejs.org/)
--   [Express.js](https://expressjs.com/)
--   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) 
--   [Google Generative AI (Gemini)](https://ai.google) 
--   [Multer](https://www.npmjs.com/package/multer)
--   [Postman](https://www.postman.com)
--   [Google Cloud](https://cloud.google.com)
+-   **Node.js** - Server-side JavaScript runtime
+-   **Express.js** - Web framework for building APIs
+-   **MongoDB Atlas** - Cloud-based database service
+-   **Multer** - Middleware for handling file uploads
+-   **Google Generative AI** (Gemini) - For generating image descriptions
+-   **Google Cloud Run** - For deploying and managing containerized applications
+-   **Postman** - For API testing and debugging
+
+## 📋 API Endpoints
+
+### **GET** `/posts`
+
+Retrieves a list of all posts.
+
+**Example Response:**
+
+
+  {
+    "_id": "638d6e498d00e1cabc345672",
+    "title": "My First Post",
+    "description": "This is an example description."
+  }
+
+### **POST** `/posts`
+
+Creates a new post.
+
+**Request Body:**
+
+{
+  "title": "Post Title",
+  "description": "Detailed description of the post."
+}
+
+**Example Response:**
+
+{
+  "_id": "638d6e498d00e1cabc345672",
+  "title": "Post Title",
+  "description": "Detailed description of the post."
+}
+
+### **POST** `/upload`
+
+Uploads an image and creates a new post.
+
+**Form-Data**:
+
+-   `image`: Select an image file to upload.
+
+**Example Response:**
+
+{
+  "_id": "638d6e498d00e1cabc345672",
+  "title": "Post with Image",
+  "description": "Automatically generated description for the image."
+}`
+
+### **PUT** `/upload/:id`
+
+Updates a post's details and associated image.
+
+**Request Body:**
+
+{
+  "title": "Updated Title",
+  "description": "Updated description."
+}
+
+### **DELETE** `/posts/:id`
+
+Deletes a post by ID.
+
+**Example Response:**
+
+{
+  "message": "Post deleted successfully."
+}
+
+## 🚀 How to Run Locally
+
+### Prerequisites
+
+-   [Node.js](https://nodejs.org/) installed
+-   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) account
+
+### **Step-by-Step Setup**
+
+1.  **Clone the Repository**
+    
+	  `git clone https://github.com/ricardotemporal/your-repo-name.git`
+	  `cd your-repo-name` 
+    
+2.  **Install Dependencies**
+
+	`npm install` 
+    
+4.  **Set Up Environment Variables**
+    
+    -   Create a `.env` file in the root of the project:
+        
+        `CONNECTION_STRING=your-mongodb-connection-string`
+    `GEMINI_API_KEY=your-gemini-api-key` 
+        
+5.  **Run the Server Locally**
+    
+    `npm run dev` 
+    
+    The server will start on `http://localhost:3000`.
+   
+    
+
+## 🌐 Accessing the API
+
+-   **List Posts**: [GET `http://localhost:3000/posts`](http://localhost:3000/posts)
+-   **Create Post**: [POST `http://localhost:3000/posts`](http://localhost:3000/posts)
+-   **Upload Image**: [POST `http://localhost:3000/upload`](http://localhost:3000/upload)
+-   **Update Post**: PUT `http://localhost:3000/upload/:id`
+-   **Delete Post**: DELETE `http://localhost:3000/posts/:id`
